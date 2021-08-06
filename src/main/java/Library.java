@@ -18,7 +18,7 @@ public class Library {
     // choosing an operation
     static void operation (Connection con){
         boolean valid = false;
-        System.out.println("""
+        System.out.println( "\n" + """
                 1: insert book\s
                 2: delete book\s
                 3: issue book\s
@@ -211,9 +211,9 @@ public class Library {
         Scanner in = new Scanner(System.in);
         System.out.print("\n" + "first name: ");
         String f_name = in.nextLine();
-        System.out.print("\n" + "last name: ");
+        System.out.print("last name: ");
         String l_name = in.nextLine();
-        System.out.print("\n" + "gender: ");
+        System.out.print("gender: ");
         String gender = in.nextLine();
         String insertRecords = "INSERT INTO library.authors(f_name, l_name,gender) VALUES(?,?,?)";
 
@@ -236,7 +236,7 @@ public class Library {
         Scanner in = new Scanner(System.in);
         System.out.print("\n" + "book id: ");
         int book_id = in.nextInt();
-        System.out.print("\n" + "author id: ");
+        System.out.print("author id: ");
         int author_id = in.nextInt();
         String addRelationQuery = "INSERT INTO library.author_to_book values (?, ?)";
 
@@ -330,7 +330,7 @@ public class Library {
                         err.printStackTrace(); }
                 }
                 else {
-                    System.out.println("user not found"); }
+                    System.out.println("user not found\n"); }
             } catch (SQLException err){
                 err.printStackTrace(); }
         }
@@ -363,7 +363,7 @@ public class Library {
                         err.printStackTrace(); }
                 }
                 else {
-                    System.out.println("user not found"); }
+                    System.out.println("user not found\n"); }
 
             } catch (SQLException err) {
                 err.printStackTrace();
