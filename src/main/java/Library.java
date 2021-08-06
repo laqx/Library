@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
@@ -17,6 +18,7 @@ public class Library {
 
     // choosing an operation
     static void operation (Connection con){
+
         boolean valid = false;
         System.out.println( "\n" + """
                 1: insert book\s
@@ -35,29 +37,87 @@ public class Library {
                 """);
         System.out.print("select an operation: " );
 
-        while (!valid) {
-            Scanner in = new Scanner(System.in);
-            int choice = in.nextInt();
-            switch (choice) {
-                case 1 -> {addBook(con); in.close(); valid = true;}
-                case 2 -> {removeBook(con); in.close(); valid = true;}
-                case 3 -> {issueBook(con); in.close(); valid = true;}
-                case 4 -> {returnBook(con); in.close(); valid = true;}
-                case 5 -> {addAuthor(con); in.close(); valid = true;}
-                case 6 -> {addRelation(con); in.close(); valid = true;}
-                case 7 -> {registerBorrower(con); in.close(); valid = true;}
-                case 8 -> {blockBorrower(con); in.close(); valid = true;}
-                case 9 -> {unblockBorrower(con); in.close(); valid = true;}
-                case 10 -> {findByGenre(con); in.close(); valid = true;}
-                case 11 -> {findByAuthor(con); in.close(); valid = true;}
-                case 12 -> {borrowedById(con); in.close(); valid = true;}
-                case 13 -> {genreStatistic(con); in.close(); valid = true;}
-                default ->
-                        System.out.print("""
-                            operation not found
-                            try again:\s""");
+        boolean isNumeric = false;
+        while (!isNumeric)
+            try {
+                while (!valid) {
+                    Scanner in = new Scanner(System.in);
+                    int choice = in.nextInt();
+                    switch (choice) {
+                        case 1 -> {
+                            addBook(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 2 -> {
+                            removeBook(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 3 -> {
+                            issueBook(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 4 -> {
+                            returnBook(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 5 -> {
+                            addAuthor(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 6 -> {
+                            addRelation(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 7 -> {
+                            registerBorrower(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 8 -> {
+                            blockBorrower(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 9 -> {
+                            unblockBorrower(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 10 -> {
+                            findByGenre(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 11 -> {
+                            findByAuthor(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 12 -> {
+                            borrowedById(con);
+                            in.close();
+                            valid = true;
+                        }
+                        case 13 -> {
+                            genreStatistic(con);
+                            in.close();
+                            valid = true;
+                        }
+                        default -> System.out.print("""
+                                operation not found
+                                try again:\s""");
+                    }
+                    isNumeric = true;
+                }
+            } catch (InputMismatchException ii) {
+                System.out.println("invalid input");
             }
-        }
 
     }
 
